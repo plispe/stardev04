@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: be
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: be
+    spec:
+      imagePullSecrets:
+      - name: test-resistry-credentials 
+      containers:
+      - name: cron
+        image: petrpliska/cron:0.0.1
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP

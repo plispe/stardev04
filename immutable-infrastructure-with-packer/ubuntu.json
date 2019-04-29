@@ -1,0 +1,31 @@
+{
+    "variables": {
+      "api_token": "{{env `TF_VAR_DIGITALOCEAN_TOKEN`}}"
+    },
+    "builders": [
+      {
+        "api_token": "{{user `api_token`}}",
+        "type": "digitalocean",
+        "region": "fra1",
+        "image": "ubuntu-18-04-x64",
+        "size": "s-4vcpu-8gb",
+        "snapshot_name": "ubuntu-with-nginx-{{timestamp}}",
+        "ssh_username": "root",
+        "private_networking": true,
+        "monitoring": true
+      }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sleep 10"
+            ]
+        },
+      {
+        "type": "ansible",
+        "playbook_file": "nginx.yml",
+        "extra_arguments": ["--extra-vars", "ansible_python_interpreter=/usr/bin/python3"]
+      }
+    ]
+  }

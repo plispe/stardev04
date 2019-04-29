@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ipbx-api
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-route53-production
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - hosts:
+    - "fe.p4a.me"
+    secretName: fe-p4a-me-tls
+  rules:
+  - host: "fe.p4a.me"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: fe
+          servicePort: 80

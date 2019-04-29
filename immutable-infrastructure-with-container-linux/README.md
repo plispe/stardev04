@@ -1,0 +1,3 @@
+# Ukázka immutable infrastruktury na Container Linuxu
+
+[Container Linux](https://coreos.com/os/docs/latest/) je linuxová distibuce optimalizovaná pro běh kontejnerů. Systém neobsahuje žádný package manager, tudíž nedává moc smysl používat configuration management nástroje jako ansible. Container linux se konfiguruje pomoci tzv. [Container linux configu](https://coreos.com/os/docs/latest/provisioning.html#container-linux-config) nebo [Ignition](https://coreos.com/os/docs/latest/provisioning.html#ignition-config) tyto nástroje nakonfigurují server při jeho startu a pak se již nemění. Dnes už nedává moc smysl používat coreos pro přímo hostování kontejnerů, ale může sloužit jako základ pro Kubernetes.
